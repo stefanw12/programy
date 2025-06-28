@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dekrypcja NKWD</title>
+    </head>
+    <body>
+        <h1>program nie obsługuje znaków: ą, ć, ę, ł, ń, ó, ś, ź</h1>
+        <h1 id="naglowekZŁaciną">Twój tekst to: </h1>
+        <script>
+                let lacina = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "w", "y", "z", "ż"];
+                let cyrylica = ["a", "б", "ц", 'д', 'є', "ф", 'г', "x", 'и', 'ї', "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "в", "ы", "з", "ж"];
+
+                function zamianaAlfabetu(literaCyrylica) {
+                    if (literaCyrylica == " ") {
+                        return " ";
+                    };
+
+                    var litera = cyrylica.indexOf(literaCyrylica);
+                
+                    if (litera === -1) {
+                        return "?";
+                    };
+
+                    return lacina[litera];
+                };
+
+                function przesunięcie(litera, oIle) {
+                    if (litera === " ") { 
+                        return " ";
+                    };
+
+                    let przesunięcieLitera = cyrylica.indexOf(litera);
+                    
+                    if (przesunięcieLitera === -1) {
+                        return "?";
+                    };
+                    return cyrylica[(przesunięcieLitera - oIle + cyrylica.length) % cyrylica.length];
+                };
+
+                function dekoduj(tekst) {
+                let litery=[];
+                for(let i=0; i<tekst.length; i++) {
+                    litery.push(przesunięcie(tekst[i], 7));
+                };
+                
+                for (let i = 0; i < tekst.length; i++) {
+                    litery[i] = zamianaAlfabetu(litery[i]);
+                };
+                return litery.join("");
+                };
+
+                let tekstDoPrzetłumaczenia=prompt("Podaj tekst do przetłumaczenia na cyrylicę")
+                let elementNaglowkowy=document.getElementById("naglowekZŁaciną");
+                elementNaglowkowy.innerHTML = "Twój tekst to: " + dekoduj(tekstDoPrzetłumaczenia);
+            </script>
+        </body>
+</html>
+
+
+
