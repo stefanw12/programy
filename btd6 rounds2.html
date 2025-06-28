@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gues BTD6 round</title>
+    </head>
+    <body>
+        <script>
+        let questionPlayer = true;
+        let rounds = [
+        '20 reds ',
+        '35 Reds ',
+        '25 Reds, 5 Blues ',
+        '35 Reds, 18 Blues ',
+        '5 Reds, 27 Blues ',
+        '15 Reds, 15 Blues, 4 Greens ',
+        '20 Reds, 20 Blues, 5 Greens ',
+        '10 Reds, 20 Blues, 14 Greens ',
+        '30 Greens ',
+        '102 Blues ',
+        '6 Reds, 12 Blues, 12 Greens, 3 Yellows ',
+        '15 Blues, 10 Greens, 5 Yellows ',
+        '50 Blues, 23 Greens ',
+        '49 Reds, 15 Blues, 10 Greens, 9 Yellows ',
+        '20 Reds, 15 Blues, 12 Greens, 10 Yellows, 5 Pinks ',
+        '40 Greens, 8 Yellows ',
+        '12 Regrow Yellows ',
+        '80 Greens ',
+        '10 Greens, 4 Yellows, 5 Regrow Yellows, 15 Pinks ',
+        '6 Blacks ',
+        '40 Yellows, 14 Pinks ',
+        '16 Whites ',
+        '7 Blacks, 7 Whites ',
+        '20 Blues, Camo Green ',
+        '25 Regrow Yellows, 10 Purples ',
+        '23 Pinks, 4 Zebras ',
+        '100 Reds, 60 Blues, 45 Greens, 45 Yellows ',
+        '6 Leads ',
+        '50 Yellows, 15 Regrow Yellows ',
+        '9 Leads ',
+        '8 Blacks, 8 Whites, 8 Zebras, 2 Regrow Zebras ',
+        '15 Blacks, 20 Whites, 10 Purples ',
+        '20 Camo Reds, 13 Camo Yellows ',
+        '160 Yellows, 6 Zebras ',
+        '35 Pinks, 30 Blacks, 25 Whites, 5 Rainbows ',
+        '140 Pinks, 20 Camo Regrow Greens ',
+        '25 Blacks, 25 Whites, 7 Camo Whites, 10 Zebras, 15 Leads ',
+        '42 Pinks, 17 Whites, 10 Zebras, 14 Leads, 2 Ceramics ',
+        '10 Blacks, 10 Whites, 20 Zebras, 18 Rainbows, 2 Regrow Rainbows ',
+        'MOAB ',
+        '60 Blacks, 60 Zebras ',
+        '6 Regrow Rainbows, 5 Camo Rainbows ',
+        '10 Rainbows, 7 Ceramics ',
+        '50 Zebras ',
+        '180 Pinks, 10 Camo Purples, 4 Fortified Leads, 25 Rainbows ',
+        '6 Fortified Ceramics ',
+        '70 Camo Pinks, 12 Ceramics ',
+        '40 Regrow Pinks, 30 Camo Regrow Purples, 40 Rainbows, 3 Fortified Ceramics ',
+        '343 Greens, 20 Zebras, 20 Rainbows, 10 Regrow Rainbows, 18 Ceramics ',
+        '20 Reds, 8 Fortified Leads, 20 Ceramics, 2 MOABs ',
+        '10 Regrow Rainbows, 15 Camo Ceramics ',
+        '25 Rainbows, 10 Ceramics, 2 MOABs ',
+        '80 Camo Pinks, 3 MOABs ',
+        '35 Ceramics, 2 MOABs ',
+        '45 Ceramics, MOAB ',
+        '40 Camo Rainbows, MOAB ',
+        '40 Rainbows, 4 MOABs ',
+        '15 Ceramics, 10 Fortified Ceramics, 5 MOABs ',
+        '50 Camo Leads, 20 Ceramics, 10 Regrow Ceramics ',
+        'BFB ',
+        '150 Regrow Zebras, 5 MOABs ',
+        '250 Purples, 15 Camo Regrow Rainbows, 5 MOABs, 2 Fortified MOABs ',
+        '75 Leads, 122 Ceramics ',
+        '6 MOABs, 3 Fortified MOABs ',
+        '100 Zebras, 70 Rainbows, 50 Ceramics, 3 MOABs, 2 BFBs ',
+        '8 MOABs, 3 Fortified MOABs ',
+        '13 Camo Regrow Fortified Ceramics, 8 MOABs ',
+        '4 MOABs, BFB ',
+        '40 Regrow Blacks, 40 Fortified Leads, 50 Ceramics ',
+        '120 Camo Regrow Whites, 200 Rainbows, 4 MOABs ',
+        '30 Ceramics, 10 MOABs ',
+        '38 Regrow Ceramics, 2 BFBs ',
+        '8 MOABs, 2 BFBs ',
+        '50 Ceramics, 60 Fortified Ceramics, 25 Camo Regrow Fortified Ceramics, BFB ',
+        '14 Leads, 14 Fortified Leads, 3 Fortified MOABs, 7 BFBs ',
+        '60 Regrow Ceramics ',
+        '11 MOABs, 5 BFBs ',
+        '80 Purples, 150 Rainbows, 75 Ceramics, 72 Camo Ceramics, BFB ',
+        '500 Regrow Rainbows, 4 BFBs, 2 Fortified BFBs ',
+        'ZOMG ',
+        '17 BFBs ',
+        '10 BFBs, 5 Fortified BFBs ',
+        '40 Ceramics, 40 Regrow Ceramics, 40 Fortified Ceramics, 30 MOABs ',
+        '50 MOABs, 10 BFBs ',
+        '2 ZOMGs ',
+        '5 Fortified BFBs ',
+        '4 ZOMGs ',
+        '18 MOABs, 8 BFBs, 2 ZOMGs ',
+        '20 Fortified MOABs, 8 Fortified BFBs ',
+        '50 Camo Regrow Fortified Leads, 3 DDTs ',
+        '100 Fortified Ceramics, 20 BFBs ',
+        '50 Fortified MOABs, 4 ZOMGs ',
+        '10 Fortified BFBs, 6 DDTs ',
+        '25 BFBs, 6 ZOMGs ',
+        '500 Camo Regrow Purples, 250 Camo Regrow Fortified Leads, 50 Fortified MOABs, 30 DDTs ',
+        '40 Fortified MOABs, 30 BFBs, 6 ZOMGs ',
+        '2 Fortified ZOMGs ',
+        '30 Fortified BFBs, 8 ZOMGs ',
+        '60 MOABs, 9 Fortified DDTs ',
+        'BAD'
+        ];
+        
+        let roundsCopy = [...rounds];
+        
+        const questionText = document.createElement('h1');
+        document.body.append(questionText);
+
+        const form = document.createElement('form');
+        document.body.appendChild(form);
+
+        const roundsInput = document.createElement('input');
+        roundsInput.type = 'text';
+        roundsInput.name = 'rounds';
+        form.appendChild(roundsInput);
+
+        const submitButton = document.createElement('button');
+        submitButton.type = 'submit';
+        submitButton.textContent = 'Submit';
+        form.appendChild(submitButton);
+
+        const skipButton = document.createElement('button');
+        skipButton.type = 'submit';
+        skipButton.textContent = 'Skip';
+        form.appendChild(skipButton);
+
+
+        let randomRound = Math.floor(Math.random() * rounds.length);
+        questionText.textContent = 'What round is it: ' + rounds[randomRound] + '?';
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const userGuess = roundsInput.value;
+
+            if (roundsCopy.length > 0) {
+                const correctAnswer = randomRound + 1;
+
+                if (userGuess == correctAnswer) {
+                    alert('Congratulations! You guessed it right!');
+                    roundsCopy.splice(0, 1);
+                } else {
+                    alert('Wrong round! Correct answer was ' + correctAnswer);
+                }
+                randomRound = Math.floor(Math.random() * rounds.length);
+                questionText.textContent = 'What round is it: ' + rounds[randomRound] + '?';
+
+                roundsInput.value = '';
+            } else {
+                alert('Congratulations! You guessed every round in bloons tower defense 6!');
+            }
+        });
+
+
+        
+        </script>
+    </body>
+</html>
